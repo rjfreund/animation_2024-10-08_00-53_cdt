@@ -3,6 +3,7 @@
 // pages/animated.js
 import {useEffect,useRef} from 'react';
 import anime from 'animejs';
+import Image from 'next/image';
 
 const AnimatedPage=() =>
 {
@@ -11,11 +12,14 @@ const AnimatedPage=() =>
      useEffect(() =>
      {
           // Create the animation when the component mounts
+
           anime({
                targets: boxRef.current,
-               translateX: 250,
-               rotate: '1turn',
-               backgroundColor: '#FF6347',
+               translateY: 10,
+               //rotate: '1turn',
+               //backgroundColor: '#FF6347',
+               direction: 'alternate',
+               easing: 'easeInOutQuad',
                duration: 2000,
                loop: true
           });
@@ -23,7 +27,16 @@ const AnimatedPage=() =>
 
      return (
           <div style={styles.container}>
-               <div ref={boxRef} style={styles.box}></div>
+               <Image src="/OswinBackground.png" alt="Oswin  " width={0}
+                    height={0}
+                    sizes="100vw"
+                    style={{width: '100%',height: 'auto',position: 'absolute'}} />
+               <Image src="/Oswin.png" alt="Oswin  " width={0}
+                    height={0}
+                    sizes="100vw"
+                    style={{width: '100%',height: 'auto', position: 'absolute'}}
+                    ref={boxRef}/>
+
           </div>
      );
 };
@@ -34,11 +47,12 @@ const styles={
           justifyContent: 'center',
           alignItems: 'center',
           height: '100vh',
+          width: '100vw',
           backgroundColor: '#f0f0f0',
      },
      box: {
-          width: '100px',
-          height: '100px',
+          width: '100%',
+          height: '100%',
           backgroundColor: '#00f',
      },
 };
